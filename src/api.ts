@@ -1,8 +1,16 @@
-import { Planet, Person, Film, Starship, Vehicle, Species } from "./types";
+import {
+  Planet,
+  Person,
+  Film,
+  Starship,
+  Vehicle,
+  Species,
+  Endpoint,
+} from "./types";
 
-const endpoints = {
-  allPlanets: "https://swapi.py4e.com/api/planets/",
-  searchPlanet: "https://swapi.py4e.com/api/planets/?search=",
+const endpoints: Endpoint = {
+  api: "https://swapi.py4e.com/api/",
+  planet: "https://swapi.py4e.com/api/planets/",
   person: "https://swapi.py4e.com/api/people/",
   film: "https://swapi.py4e.com/api/films/",
   starship: "https://swapi.py4e.com/api/starships/",
@@ -10,15 +18,12 @@ const endpoints = {
   species: "https://swapi.py4e.com/api/species/",
 };
 
+const search: string = "?search=";
+
 // ==============================FUNCTIONS==============================
-export const getAllPlanets = async (): Promise<Planet[]> => {
-  const response = await fetch(endpoints.allPlanets);
-  const data: Planet[] = await response.json();
-  return data;
-};
 
 export const getPlanetById = async (id: number): Promise<Planet> => {
-  const response = await fetch(endpoints.allPlanets + id);
+  const response = await fetch(endpoints.planet + id);
   const data: Planet = await response.json();
   return data;
 };
@@ -26,7 +31,7 @@ export const getPlanetById = async (id: number): Promise<Planet> => {
 export const getPlanetsByName = async (
   searchWord: string
 ): Promise<Planet[]> => {
-  const response = await fetch(endpoints.searchPlanet + searchWord);
+  const response = await fetch(endpoints.planet + search + searchWord);
   const data: Planet[] = await response.json();
   return data;
 };
@@ -59,4 +64,13 @@ export const getSpeciesById = async (id: number): Promise<Species> => {
     const response = await fetch(endpoints.species + id);
     const data: Species = await response.json();
     return data;
-}
+};
+
+export const oneFunctionToRuleThemAll = async (
+  type: keyof Endpoint,
+  id: number
+): Promise<unknown> => {
+  const response = await fetch(endpoints.api + type + "/" + id);
+  const data = await response.json();
+  return data;
+};

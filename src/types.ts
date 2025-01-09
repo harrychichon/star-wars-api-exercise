@@ -108,3 +108,13 @@ export type Species = {
   skin_colors: string;
   url: string;
 };
+
+export type Endpoint = {
+  api: string;
+  planet: string;
+  person: string;
+  film: string;
+  starship: string;
+  vehicle: string;
+  species: string;
+};
