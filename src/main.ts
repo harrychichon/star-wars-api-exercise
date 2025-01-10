@@ -1,24 +1,36 @@
 import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import {
+  getPlanetById,
+  getPlanetsByName,
+  getPeopleById,
+  getFilmById,
+  getStarshipById,
+  getVehicleById,
+  getSpeciesById,
+  oneFunctionToRuleThemAll,
+  oneFunctionToRuleThemAllRefactor,
+} from "./api";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
+    <h1>Star Wars stuff</h1>
   </div>
-`
+`;
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+console.log(await getPlanetById(1));
+
+console.log(await getPlanetsByName("oo"));
+
+console.log(await getPeopleById(2));
+
+console.log(await getFilmById(5));
+
+console.log(await getStarshipById(10));
+
+console.log(await getVehicleById(4));
+
+console.log(await getSpeciesById(18));
+
+console.log(await oneFunctionToRuleThemAll(4, "film"));
+
+console.log(await oneFunctionToRuleThemAllRefactor(4, "film"));
